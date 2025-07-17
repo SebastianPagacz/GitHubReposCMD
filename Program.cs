@@ -18,7 +18,7 @@ internal class Program
             var result = await client.GetAsync(url);
             var json = await result.Content.ReadAsStringAsync();
             var deserializedData = JsonConvert.DeserializeObject<List<Request>>(json);
-            var finalData = deserializedData.Where(d => d.Forks_Count == 0).ToList();
+            var finalData = deserializedData.Where(d => d.Forks_Count <= 0).ToList();
 
             for (int i = 0; i < finalData.Count; i++) 
             {
